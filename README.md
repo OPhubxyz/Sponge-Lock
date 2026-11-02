@@ -28,10 +28,11 @@ The Worker creates permanent `/s/<uuid>` URLs and serves source as plain text wi
 Open `index.html` in a modern browser. No build step is required. Cloud saving requires the deployed Worker and D1 setup above.
 
 ## Important limitations
-- The generated URL is a browser-local `blob:` URL, not a permanent hosted endpoint. It is temporary and only available in the browser session that created it.
-- The URL returns source text; it is not a secure execution endpoint or a server-hosted script.
-- No backend, database, user authentication, durable script storage, or real license-key validation is implemented.
-- Uploaded files and pasted code are processed locally in the browser.
+- Cloudflare's free tier has daily Workers and D1 request/read/write/storage limits. If a quota is exceeded, the related operation can pause until the quota resets or the plan changes.
+- Public script URLs return source text only; they do not execute Luau or provide a Roblox runtime.
+- This first Cloudflare integration uses one shared admin token, not individual user accounts or per-script permissions.
+- Anyone who has a public script URL can read that script. Do not store passwords, API keys, or private data in scripts.
+- Keep `ADMIN_TOKEN` private and never commit it to the repository.
 
 ## Roadmap
 1. Add Code workspace UI
