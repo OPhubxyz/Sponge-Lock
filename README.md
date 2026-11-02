@@ -13,8 +13,19 @@ A Roblox script access-management platform prototype with a clean charcoal-and-g
 - English / Vietnamese interface toggle
 - Responsive editor layout
 
+## Cloudflare setup (free tier)
+
+1. Create a Cloudflare account and a D1 database named `sponge-lock-db`.
+2. Copy the database ID into `worker/wrangler.toml`.
+3. From the `worker` directory, apply the schema with `npx wrangler d1 execute sponge-lock-db --remote --file=./migrations/0001_init.sql`.
+4. Set a long random secret: `npx wrangler secret put ADMIN_TOKEN` (use at least 24 characters; do not commit it).
+5. Deploy the Worker: `npx wrangler deploy`.
+6. Open `index.html`, enter the deployed Worker URL and the same admin token, then save a script.
+
+The Worker creates permanent `/s/<uuid>` URLs and serves source as plain text with `nosniff` and a restrictive CSP. Script writes and the management list require the admin token. The token is entered in the page and is not saved to local storage. The public script URL is readable by anyone who has it; do not store secrets or private data in scripts.
+
 ## Run locally
-Open `index.html` in a modern browser. No build step or dependencies are required.
+Open `index.html` in a modern browser. No build step is required. Cloud saving requires the deployed Worker and D1 setup above.
 
 ## Important limitations
 - The generated URL is a browser-local `blob:` URL, not a permanent hosted endpoint. It is temporary and only available in the browser session that created it.
