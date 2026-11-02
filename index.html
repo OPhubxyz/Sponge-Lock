@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#11110f">
+<title>Sponge-Lock — Control Panel</title>
+<style>
+:root{--bg:#0e0f0d;--panel:#171815;--panel2:#1d1e1a;--line:#2c2d27;--gold:#e4bd45;--gold2:#f1d778;--text:#f3f2eb;--muted:#9b9b8f;--green:#8fd6a0}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}button{font:inherit;cursor:pointer}
+.shell{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.sidebar{background:#121310;border-right:1px solid var(--line);padding:24px 16px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:11px;padding:0 10px}.logo{width:35px;height:35px;border-radius:10px;background:var(--gold);color:#17150d;display:grid;place-items:center;font-weight:900;font-size:19px}.brand strong{font-size:16px;letter-spacing:.4px}.brand small{display:block;color:var(--muted);font-size:11px}.nav-label{padding:0 11px;color:#737469;text-transform:uppercase;letter-spacing:1.4px;font-size:10px;font-weight:700}.nav{display:grid;gap:5px}.nav button{border:0;background:transparent;color:#b6b6aa;text-align:left;padding:11px 12px;border-radius:9px;display:flex;gap:12px;align-items:center}.nav button.active,.nav button:hover{background:#29271d;color:var(--gold2)}.nav .ico{width:19px;text-align:center}.side-bottom{margin-top:auto;border:1px solid var(--line);border-radius:12px;padding:13px;color:var(--muted);font-size:12px}.side-bottom b{color:var(--gold2);display:block;margin-bottom:4px}
+main{min-width:0;padding:28px clamp(16px,4vw,42px)}.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:28px}.crumb{color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:9px 13px}.btn.gold{background:var(--gold);color:#1b190f;border-color:var(--gold);font-weight:700}.btn:hover{filter:brightness(1.08)}h1{font-size:clamp(24px,3vw,31px);letter-spacing:-.8px;margin:0 0 5px} .sub{color:var(--muted);margin:0 0 24px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px}.metric,.section{background:var(--panel);border:1px solid var(--line);border-radius:13px}.metric{padding:17px}.metric-label{color:var(--muted);font-size:12px}.metric-value{font-size:27px;font-weight:750;margin:9px 0 3px;letter-spacing:-.5px}.metric-foot{font-size:11px;color:var(--green)}.section{padding:18px;margin-bottom:18px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.section-head h2{font-size:15px;margin:0}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:540px}th{text-align:left;color:var(--muted);font-size:11px;font-weight:600;padding:11px 10px;border-bottom:1px solid var(--line)}td{padding:13px 10px;border-bottom:1px solid #252620}tbody tr:last-child td{border-bottom:0}.pill{display:inline-flex;border-radius:20px;padding:3px 8px;font-size:11px;background:#202c22;color:var(--green)}.pill.gold{background:#302a18;color:var(--gold2)}.mono{font-family:ui-monospace,SFMono-Regular,monospace;font-size:12px;color:#d4d2c6}.empty{padding:30px;text-align:center;color:var(--muted)}.notice{font-size:12px;color:var(--muted);margin-top:20px}.view{display:none}.view.active{display:block}
+@media(max-width:950px){.shell{grid-template-columns:72px 1fr}.sidebar{padding:20px 9px}.brand{justify-content:center;padding:0}.brand .brand-text,.nav-label,.nav button .nav-text,.side-bottom{display:none}.nav button{justify-content:center;padding:12px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){main{padding:18px 12px}.topbar{align-items:flex-start}.metrics{gap:9px}.metric{padding:13px}.metric-value{font-size:22px}.top-actions .btn{padding:8px 9px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+<div class="brand"><div class="logo">S</div><div class="brand-text"><strong>Sponge-Lock</strong><small>Script Control Platform</small></div></div>
+<div><div class="nav-label" data-i18n="workspace">Workspace</div><nav class="nav" aria-label="Main navigation">
+<button class="active" data-view="overview"><span class="ico">◫</span><span class="nav-text" data-i18n="overview">Overview</span></button>
+<button data-view="scripts"><span class="ico">⌘</span><span class="nav-text" data-i18n="scripts">Scripts</span></button>
+<button data-view="keys"><span class="ico">⚿</span><span class="nav-text" data-i18n="keys">Access Keys</span></button>
+<button data-view="users"><span class="ico">♙</span><span class="nav-text" data-i18n="users">Users</span></button>
+</nav></div>
+<div><div class="nav-label" data-i18n="system">System</div><nav class="nav"><button data-view="settings"><span class="ico">⚙</span><span class="nav-text" data-i18n="settings">Settings</span></button></nav></div>
+<div class="side-bottom"><b>SPONGE-LOCK • PR1</b><span data-i18n="prototype">Dashboard prototype<br>Demo data only</span></div>
+</aside>
+<main>
+<header class="topbar"><div class="crumb">Sponge-Lock <span style="color:var(--gold)">/</span> <span id="crumb" data-i18n="overview">Overview</span></div><div class="top-actions"><button class="btn" id="lang" aria-label="Switch language">VI / EN</button><button class="btn">● <span data-i18n="admin">Admin</span></button></div></header>
+<section class="view active" id="overview">
+<h1 data-i18n="welcome">Welcome back</h1><p class="sub" data-i18n="subtitle">Manage your scripts and access licenses from one place.</p>
+<div class="metrics">
+<div class="metric"><div class="metric-label" data-i18n="totalScripts">Total Scripts</div><div class="metric-value">03</div><div class="metric-foot" data-i18n="registered">Registered in workspace</div></div>
+<div class="metric"><div class="metric-label" data-i18n="activeKeys">Active Keys</div><div class="metric-value">128</div><div class="metric-foot" data-i18n="demoMetric">Demo metric</div></div>
+<div class="metric"><div class="metric-label" data-i18n="usersMetric">Users</div><div class="metric-value">86</div><div class="metric-foot" data-i18n="demoMetric">Demo metric</div></div>
+<div class="metric"><div class="metric-label" data-i18n="authRequests">Auth Requests</div><div class="metric-value">2.4k</div><div class="metric-foot" data-i18n="demoMetric">Demo metric</div></div>
+</div>
+<div class="section"><div class="section-head"><h2 data-i18n="recentScripts">Recent Scripts</h2><button class="btn" data-go="scripts" data-i18n="viewAll">View all</button></div><div class="table-wrap"><table><thead><tr><th data-i18n="scriptName">SCRIPT</th><th data-i18n="status">STATUS</th><th data-i18n="created">CREATED</th><th data-i18n="version">VERSION</th></tr></thead><tbody><tr><td><b>Project Atlas</b></td><td><span class="pill">● <span data-i18n="active">Active</span></span></td><td>Nov 02, 2026</td><td class="mono">v1.0.0</td></tr><tr><td><b>Project Nova</b></td><td><span class="pill">● <span data-i18n="active">Active</span></span></td><td>Nov 01, 2026</td><td class="mono">v0.8.2</td></tr><tr><td><b>Project Orbit</b></td><td><span class="pill gold">◷ <span data-i18n="draft">Draft</span></span></td><td>Oct 30, 2026</td><td class="mono">v0.1.0</td></tr></tbody></table></div></div>
+<div class="section"><div class="section-head"><h2 data-i18n="activity">Activity</h2><span class="pill gold" data-i18n="preview">Preview</span></div><div class="empty" data-i18n="activityEmpty">Activity feed will be connected to the backend in a future release.</div></div>
+</section>
+<section class="view" id="scripts"><h1 data-i18n="scripts">Scripts</h1><p class="sub" data-i18n="scriptsDesc">Organize your script projects and their releases.</p><div class="section"><div class="empty" data-i18n="backendPlaceholder">This section is a UI placeholder. Backend integration is not included in PR1.</div></div></section>
+<section class="view" id="keys"><h1 data-i18n="keys">Access Keys</h1><p class="sub" data-i18n="keysDesc">Manage license keys and their status.</p><div class="section"><div class="empty" data-i18n="backendPlaceholder">This section is a UI placeholder. Backend integration is not included in PR1.</div></div></section>
+<section class="view" id="users"><h1 data-i18n="users">Users</h1><p class="sub" data-i18n="usersDesc">Review workspace members and access.</p><div class="section"><div class="empty" data-i18n="backendPlaceholder">This section is a UI placeholder. Backend integration is not included in PR1.</div></div></section>
+<section class="view" id="settings"><h1 data-i18n="settings">Settings</h1><p class="sub" data-i18n="settingsDesc">Workspace preferences.</p><div class="section"><div class="empty" data-i18n="backendPlaceholder">This section is a UI placeholder. Backend integration is not included in PR1.</div></div></section>
+<p class="notice" data-i18n="notice">PR1 frontend preview • Sample values are illustrative. No real keys, users, or authentication requests are stored.</p>
+</main></div>
+<script>
+const translations={
+en:{workspace:"Workspace",overview:"Overview",scripts:"Scripts",keys:"Access Keys",users:"Users",system:"System",settings:"Settings",prototype:"Dashboard prototype<br>Demo data only",admin:"Admin",welcome:"Welcome back",subtitle:"Manage your scripts and access licenses from one place.",totalScripts:"Total Scripts",registered:"Registered in workspace",activeKeys:"Active Keys",usersMetric:"Users",authRequests:"Auth Requests",demoMetric:"Demo metric",recentScripts:"Recent Scripts",viewAll:"View all",scriptName:"SCRIPT",status:"STATUS",created:"CREATED",version:"VERSION",active:"Active",draft:"Draft",activity:"Activity",preview:"Preview",activityEmpty:"Activity feed will be connected to the backend in a future release.",scriptsDesc:"Organize your script projects and their releases.",keysDesc:"Manage license keys and their status.",usersDesc:"Review workspace members and access.",settingsDesc:"Workspace preferences.",backendPlaceholder:"This section is a UI placeholder. Backend integration is not included in PR1.",notice:"PR1 frontend preview • Sample values are illustrative. No real keys, users, or authentication requests are stored."},
+vi:{workspace:"Không gian làm việc",overview:"Tổng quan",scripts:"Scripts",keys:"Access Keys",users:"Người dùng",system:"Hệ thống",settings:"Cài đặt",prototype:"Bản thử Dashboard<br>Dữ liệu minh họa",admin:"Quản trị",welcome:"Chào mừng trở lại",subtitle:"Quản lý Script và giấy phép truy cập tại một nơi.",totalScripts:"Tổng Scripts",registered:"Đã đăng ký",activeKeys:"Key đang hoạt động",usersMetric:"Người dùng",authRequests:"Lượt xác thực",demoMetric:"Số liệu minh họa",recentScripts:"Scripts gần đây",viewAll:"Xem tất cả",scriptName:"SCRIPT",status:"TRẠNG THÁI",created:"NGÀY TẠO",version:"PHIÊN BẢN",active:"Hoạt động",draft:"Bản nháp",activity:"Hoạt động gần đây",preview:"Xem trước",activityEmpty:"Nhật ký hoạt động sẽ kết nối backend ở phiên bản sau.",scriptsDesc:"Sắp xếp dự án Script và các bản phát hành.",keysDesc:"Quản lý Key cấp phép và trạng thái.",usersDesc:"Xem thành viên và quyền truy cập.",settingsDesc:"Tùy chỉnh workspace.",backendPlaceholder:"Đây là phần giao diện mẫu. PR1 chưa tích hợp backend.",notice:"Bản xem trước frontend PR1 • Dữ liệu chỉ minh họa, không lưu Key, người dùng hoặc lượt xác thực thật."}
+};
+let lang="en";
+function setLanguage(next){lang=next;document.documentElement.lang=next;document.querySelectorAll("[data-i18n]").forEach(el=>{const key=el.dataset.i18n;if(translations[next][key])el.innerHTML=translations[next][key]});}
+document.getElementById("lang").addEventListener("click",()=>setLanguage(lang==="en"?"vi":"en"));
+function showView(id){document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id===id));document.querySelectorAll(".nav button[data-view]").forEach(b=>b.classList.toggle("active",b.dataset.view===id));const active=document.querySelector('.nav button[data-view="'+id+'"]');document.getElementById("crumb").textContent=active?active.querySelector(".nav-text").textContent:id;}
+document.querySelectorAll(".nav button[data-view]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.go)));
+</script>
+</body>
+</html>
