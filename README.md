@@ -1,29 +1,30 @@
 # Sponge-Lock
 
-A Roblox script access-management platform prototype inspired by modern script licensing dashboards.
+A Roblox script access-management platform prototype with a clean charcoal-and-gold interface.
 
-## PR1 — Dashboard UI
+## PR1 — Add Code workspace (updated)
 
-This pull request introduces a responsive, standalone dashboard frontend with a dark charcoal and gold theme.
+### Features
+- Mobile-optimized navigation with a compact top brand bar and fixed bottom action dock
+- Single **Add Code** workspace (legacy Overview, Scripts, Access Keys, Users, and Settings tabs removed from the UI)
+- Paste Luau source into the editor or upload a `.lua` / `.luau` file (1 MB browser-side limit)
+- Create a temporary browser Blob URL that serves the entered source as plain text
+- Copy or open the generated temporary URL
+- English / Vietnamese interface toggle
+- Responsive editor layout
 
-### Included
-- Overview dashboard with illustrative metrics and recent script rows
-- Sidebar navigation for Overview, Scripts, Access Keys, Users, and Settings
-- English / Vietnamese language switch
-- Responsive layout for desktop and mobile widths
-- Placeholder pages clearly indicating backend integration is not yet included
+## Run locally
+Open `index.html` in a modern browser. No build step or dependencies are required.
 
-### Run locally
-Open `index.html` in a modern browser. No build step or dependency installation is required.
-
-### Current limitations
-- All values are demo content only
-- No backend, database, authentication, API, or persistent key storage is included
-- This UI prototype does not issue or validate real license keys
+## Important limitations
+- The generated URL is a browser-local `blob:` URL, not a permanent hosted endpoint. It is temporary and only available in the browser session that created it.
+- The URL returns source text; it is not a secure execution endpoint or a server-hosted script.
+- No backend, database, user authentication, durable script storage, or real license-key validation is implemented.
+- Uploaded files and pasted code are processed locally in the browser.
 
 ## Roadmap
-1. Dashboard frontend
-2. Script project management
-3. Secure license/key management API
-4. Account roles and administration
+1. Add Code workspace UI
+2. Backend-managed script storage and durable URLs
+3. Authentication and authorization for script access
+4. License/key management API
 5. Audit logging and integrations
